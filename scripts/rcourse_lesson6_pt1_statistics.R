@@ -13,6 +13,11 @@ data_accuracy_stats = data_accuracy_clean
 # RT data
 data_rt_stats = data_rt_clean
 
+# Check within or between variables
+xtabs(~subject_id+congruency+half, data_accuracy_stats)
+xtabs(~item+congruency+half, data_accuracy_stats)
+xtabs(~item+half, data_accuracy_stats)
+
 
 ## BUILD MODELS ####
 # Accuracy analysis
