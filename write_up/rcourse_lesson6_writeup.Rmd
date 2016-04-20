@@ -1,0 +1,75 @@
+---
+title: 'R Course: Lesson 6'
+author: "Page Piccinini"
+date: "April 21, 2016"
+output: pdf_document
+---
+```{r, echo=FALSE}
+load("rcourse_lesson6_environment.RData")
+```
+
+# Introduction
+
+The [Stroop effect](https://en.wikipedia.org/wiki/Stroop_effect) is well a known example in psychology of when it is difficult to ignore conflicting information. My data comes from participants in an R Course who conducted the experiment online.
+
+
+# Methods
+
+## Participants
+
+Participants were `r length(unique(data_subjects$subject_id))` French speakers, some native (`r length(unique(subset(data_subjects, native_french == "yes")$subject_id))`) and some non-native (`r length(unique(subset(data_subjects, native_french == "no")$subject_id))`) French speakers. There were `r length(unique(subset(data_subjects, sex == "female")$subject_id))` females and `r length(unique(subset(data_subjects, sex == "male")$subject_id))` males. The average age of all participants was `r round(mean(data_subjects$age), 2)` years old.
+
+## Materials
+
+There were a total of eight unique items based on the colors blue, red, yellow, and green (in French, *bleu*, *rouge*, *jaune*, and *vert*). For half of the items the color of the text and the word itself were the same (e.g. the wrod *bleu* in blue ink), these will be refered to as congruent trials. The other half of items had a mismatch between word text and color (e.g. the word *bleu* in green ink).
+
+## Procedure
+
+Participants were presented with a word and told to type the first letter of the ink color of the word. There were four blocks in total, within each block eight items randomized items, coming to 32 trials in total. The experiment was conducted via an online interface.
+
+
+# Results
+
+## Accuracy
+
+First I looked at accuracy on the task. As can be seen by the figure below, accuracy was in general very high. Participants did appear to be a little more accurate on congruent than incongruent trials.
+
+```{r, echo=FALSE, fig.align='center'}
+accuracy.plot
+```
+
+To test for effects a generalized linar mixed effects model was run. Accuracy was the dependent variable and congruency (congruent, incongruent) and experiment half (first, second) were included as fixed effects, both as main effects and as interaction. All fixed effects were coded with contrast coding. Participant was included as a random intercept and a random slope by congruency. Item was included as a intercept. It was the maximal, uncorrelated random effects strucutre that would converge. Significance was assessed via model comparision with an alpha of 0.05.
+
+The model found a significant effect of congruency, such that there was lower accuracy on incongruent trials compared to congruent trial [$\beta$ = `r round(coef(accuracy.glmer_sum)[2,1], 2)`, *SE* = `r round(coef(accuracy.glmer_sum)[2,2], 2)`, $\chi^2$(1) = `r round(accuracy_congruency.anova$Chisq[2], 2)`, *p*  = `r round(accuracy_congruency.anova$"Pr(>Chisq)"[2], 2)`]. There was no effect of experiment half and no significant interaction of congruency and experiment half.
+
+```{r}
+coef(accuracy.glmer_sum)[,1:2]
+
+accuracy_congruency.anova[1:8]
+accuracy_half.anova[1:8]
+accuracy_congruencyxhalf.anova[1:8]
+```
+
+## Reaction Times
+
+I also looked at reaction times on trials where participants gave a correct answer. As can be seen in the figure below, there appears to be an effect of congruency such that participants are slower on incongruent trials than congruent trials. Participants also appear to be faster in the second half of the experiment compared to the first half.
+
+```{r, echo=FALSE, fig.align='center'}
+rt_log10_boxplot.plot
+```
+
+To test for effects a linar mixed effects model was run. Reaction time log tranformed was the dependent variable and congruency (congruent, incongruent) and experiment half (first, second) were included as fixed effects, both as main effects and as interaction. All fixed effects were coded with contrast coding. Participant was included as a random intercept and a random slope by congruency. Item was included as a intercept. It was the maximal, uncorrelated random effects strucutre that would converge. Significance was assessed via model comparision with an alpha of 0.05.
+
+The model found a significant effect of congruency, such that participants were slower on incongruent trials compared to congruent trials [$\beta$ = `r round(coef(rt_log10.lmer_sum)[2,1], 2)`, *SE* = `r round(coef(rt_log10.lmer_sum)[2,2], 2)`, $\chi^2$(1) = `r round(rt_log10_congruency.anova$Chisq[2], 2)`, *p*  = `r round(rt_log10_congruency.anova$"Pr(>Chisq)"[2], 2)`]. There was also a significant effect of experiment half, such that participatns were faster in the second half of the experiment [$\beta$ = `r round(coef(rt_log10.lmer_sum)[3,1], 2)`, *SE* = `r round(coef(rt_log10.lmer_sum)[3,2], 2)`, $\chi^2$(1) = `r round(rt_log10_half.anova$Chisq[2], 2)`, *p*  = `r round(rt_log10_half.anova$"Pr(>Chisq)"[2], 2)`]. There was no significant interaction of congruency and experiment half.
+
+```{r}
+coef(rt_log10.lmer_sum)[,1:2]
+
+rt_log10_congruency.anova[1:8]
+rt_log10_half.anova[1:8]
+rt_log10_congruencyxhalf.anova[1:8]
+```
+
+# Conclusion
+
+This experiment replicated past work on the Stroop task. Participants were both less accurate and slower on incongruent trials compared to congruent trials. There was also an effect of experiment half, such that participatns were faster on the second half of the experiemtn, although there was no effect for accuracy.
