@@ -1,1 +1,1 @@
-item	congruency	text	color	text_englishone	con	red	red	yestwo	con	yellow	yellow	nothree	con	green	green	nofour	con	blue	blue	nofive	incon	yellow	red	nosix	incon	green	yellow	noseven	incon	blue	green	yeseight	incon	red	blue	yes
+item	congruency	text	color	text_english	text_lengthone	con	red	red	yes	longtwo	con	yellow	yellow	no	longthree	con	green	green	no	shortfour	con	blue	blue	no	shortfive	incon	yellow	red	no	longsix	incon	green	yellow	no	shortseven	incon	blue	green	yes	shorteight	incon	red	blue	yes	long
