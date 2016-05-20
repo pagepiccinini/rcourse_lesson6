@@ -43,7 +43,7 @@ pdf("figures/accuracy.pdf")
 accuracy.plot
 dev.off()
 
-# RT histogram non-transformed
+# RT histogram
 rt_histogram.plot = ggplot(data_rt_figs,
                            aes(x = rt,
                                fill = congruency)) +
@@ -55,7 +55,7 @@ pdf("figures/rt_histogram.pdf")
 rt_histogram.plot
 dev.off()
 
-# RT histogram transformed
+# RT log 10 histogram
 rt_log10_histogram.plot = ggplot(data_rt_figs,
                                  aes(x = rt_log10,
                                      fill = congruency)) +
@@ -67,7 +67,7 @@ pdf("figures/rt_log10_histogram.pdf")
 rt_log10_histogram.plot
 dev.off()
 
-# RT boxplot log 10 tranformed
+# RT log 10 boxplot
 rt_log10_boxplot.plot = ggplot(data_rt_figs, aes(x = half,
                                                  y = rt_log10,
                                                  fill = congruency)) +

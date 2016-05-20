@@ -10,7 +10,7 @@ load("rcourse_lesson6_environment.RData")
 
 # Introduction
 
-The [Stroop effect](https://en.wikipedia.org/wiki/Stroop_effect) is well a known example in psychology of when it is difficult to ignore conflicting information. My data comes from participants in an R Course who conducted the experiment online.
+The [Stroop effect](https://en.wikipedia.org/wiki/Stroop_effect) is a well known example in psychology of when it is difficult to ignore conflicting information. My data comes from participants in an R Course who conducted the experiment online.
 
 
 # Methods
