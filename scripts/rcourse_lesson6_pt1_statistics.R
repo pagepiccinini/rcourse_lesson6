@@ -13,14 +13,13 @@ data_accuracy_stats = data_accuracy_clean
 # RT data
 data_rt_stats = data_rt_clean
 
-# Check within or between variables
+# Check within or between variables for random effects structure
 xtabs(~subject_id+congruency+half, data_accuracy_stats)
 xtabs(~item+congruency+half, data_accuracy_stats)
 xtabs(~item+half, data_accuracy_stats)
 
 
-## BUILD MODELS ####
-# Accuracy analysis
+## BUILD MODEL FOR ACCURACY ANALYSIS ####
 # First model failed to converge
 accuracy.glmer = glmer(accuracy ~ congruency * half +
                          (1+congruency*half|subject_id) +
@@ -42,6 +41,8 @@ accuracy.glmer_sum
 accuracy.glmer_coef = coef(accuracy.glmer)
 accuracy.glmer_coef
 
+
+## BUILD MODEL FOR REACTION TIME ANALYSIS ####
 # RT analysis (first model converged)
 rt_log10.lmer = lmer(rt_log10 ~ congruency * half +
                          (1+congruency*half|subject_id) +
