@@ -51,14 +51,10 @@ accuracy.plot = ggplot(data_accuracy_figs,
   # Customize the y-axis
   ylab("Percent correct") +
   # Remove dark background
-  theme_bw() +
+  theme_classic() +
   # Additional paramaters for displaying plot
   theme(text=element_text(size=18), title=element_text(size=18),
-        panel.border = element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        legend.position="top", legend.key=element_blank(),
-        strip.background = element_rect(color="white", fill="white"))
+        legend.position="top")
 
 # Write figure to a pdf in the 'figures' folder
 pdf("figures/accuracy.pdf")
@@ -82,13 +78,10 @@ rt_histogram.plot = ggplot(data_rt_figs,
   # Customize the y-axis
   ylab("Reaction times (ms)") +
   # Remove dark background
-  theme_bw() +
+  theme_classic() +
   # Additional paramaters for displaying plot
   theme(text=element_text(size=18), title=element_text(size=18),
-        panel.border = element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        legend.position="none", legend.key=element_blank(),
+        legend.position="none",
         strip.background = element_rect(color="white", fill="white"))
 
 # Write figure to a pdf in the 'figures' folder
@@ -113,13 +106,10 @@ rt_log10_histogram.plot = ggplot(data_rt_figs,
   # Customize the y-axis
   ylab("Reaction times (log 10)") +
   # Remove dark background
-  theme_bw() +
+  theme_classic() +
   # Additional paramaters for displaying plot
   theme(text=element_text(size=18), title=element_text(size=18),
-        panel.border = element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        legend.position="none", legend.key=element_blank(),
+        legend.position="none",
         strip.background = element_rect(color="white", fill="white"))
 
 # Write figure to a pdf in the 'figures' folder
@@ -142,14 +132,10 @@ rt_log10_boxplot.plot = ggplot(data_rt_figs, aes(x = half,
   # Customize the y-axis
   ylab("Reaction Times (log 10)") +
   # Remove dark background
-  theme_bw() +
+  theme_classic() +
   # Additional paramaters for displaying plot
   theme(text=element_text(size=18), title=element_text(size=18),
-        panel.border = element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        axis.line = element_line(colour = "black"),
-        legend.position="top", legend.key=element_blank(),
-        strip.background = element_rect(color="white", fill="white"))
+        legend.position="top")
 
 # Write figure to a pdf in the 'figures' folder
 pdf("figures/rt_log10.pdf")
