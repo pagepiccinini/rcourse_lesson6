@@ -28,9 +28,9 @@ accuracy.glmer = glmer(accuracy ~ congruency * half +
 
 # Model converges with reduction of random effects
 accuracy.glmer = glmer(accuracy ~ congruency * half +
-                         (1+congruency|subject_id) +
-                         (1|item) +
-                         (0+half|item), family = "binomial",
+                         (1|subject_id) +
+                         (0+half|subject_id) +
+                         (1|item), family = "binomial",
                        data = data_accuracy_stats)
 
 # Summarise model and save

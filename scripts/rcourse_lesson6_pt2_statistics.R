@@ -44,9 +44,8 @@ accuracy.glmer = glmer(accuracy ~ congruency_contrast * half_contrast +
 # Model converges with reduction of random effects
 accuracy.glmer = glmer(accuracy ~ congruency_contrast * half_contrast +
                          (1|subject_id) +
-                         (0+congruency_contrast|subject_id) +
-                         (1|item) +
-                         (0+half_contrast|item), family = "binomial",
+                         (0+half_contrast|subject_id) +
+                         (1|item), family = "binomial",
                        data = data_accuracy_stats)
 
 # Summarise model and save
@@ -60,9 +59,8 @@ accuracy.glmer_coef
 # Test for effect of congruency
 accuracy_congruency.glmer = glmer(accuracy ~ congruency_contrast * half_contrast - congruency_contrast +
                                     (1|subject_id) +
-                                    (0+congruency_contrast|subject_id) +
-                                    (1|item) +
-                                    (0+half_contrast|item), family = "binomial",
+                                    (0+half_contrast|subject_id) +
+                                    (1|item), family = "binomial",
                                   data = data_accuracy_stats)
 
 # Compare full model to reduced model without congruency
@@ -72,9 +70,8 @@ accuracy_congruency.anova
 # Test for effect of experiment half
 accuracy_half.glmer = glmer(accuracy ~ congruency_contrast * half_contrast - half_contrast +
                               (1|subject_id) +
-                              (0+congruency_contrast|subject_id) +
-                              (1|item) +
-                              (0+half_contrast|item), family = "binomial",
+                              (0+half_contrast|subject_id) +
+                              (1|item), family = "binomial",
                             data = data_accuracy_stats)
 
 # Compare full model to reduced model without experiment half
@@ -84,9 +81,8 @@ accuracy_half.anova
 # Test for interaction of congruency x experiment half
 accuracy_congruencyxhalf.glmer = glmer(accuracy ~ congruency_contrast * half_contrast - congruency_contrast:half_contrast +
                                          (1|subject_id) +
-                                         (0+congruency_contrast|subject_id) +
-                                         (1|item) +
-                                         (0+half_contrast|item), family = "binomial",
+                                         (0+half_contrast|subject_id) +
+                                         (1|item), family = "binomial",
                                        data = data_accuracy_stats)
 
 # Compare full model to reduced model interaction of congruency x experiment half
