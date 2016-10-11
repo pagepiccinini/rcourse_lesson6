@@ -55,8 +55,8 @@ data_accuracy_clean = data_clean %>%
   # Combine data with reaction time summary information
   inner_join(data_rt_sum) %>%
   # Remove high and low outliers
-  filter(rt = rt < rt_high) %>%
-  filter(rt = rt > rt_low)
+  filter(rt < rt_high) %>%
+  filter(rt > rt_low)
 
 # Remove data points with incorrect response for RT data
 data_rt_clean = data_accuracy_clean %>%
